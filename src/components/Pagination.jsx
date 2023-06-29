@@ -46,42 +46,44 @@ const Pagination = ({
   }
 
   return (
-    <ul className="flex mt-20">
-      <li
-        onClick={paginatePrev}
-        className={`${
-          currentPage === pageNumbers[0] ? `hidden` : null
-        } btn btn-secondary`}
-      >
-        Prev
-      </li>
-      {pageNumbers.map((number) => {
-        if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-          return (
-            <li
-              key={number}
-              onClick={() => paginate(number)}
-              className={`${
-                currentPage === number ? `bg-primary` : null
-              } h-10 w-10`}
-            >
-              {number}
-            </li>
-          );
-        }
-      })}
+    <ul className="join mt-[1rem] pt-[1rem]   flex flex-col justify-center items-center gap-4">
+      <div className="flex gap-4">
+        <li
+          onClick={paginatePrev}
+          className={`text-5xl cursor-pointer hover:scale-125 duration-300 ${
+            currentPage === pageNumbers[0] ? `hidden` : null
+          } `}
+        >
+          «
+        </li>
+        {pageNumbers.map((number) => {
+          if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+            return (
+              <li
+                key={number}
+                onClick={() => paginate(number)}
+                className={`join-item btn ${
+                  currentPage === number ? `bg-primary text-white` : null
+                } `}
+              >
+                {number}
+              </li>
+            );
+          }
+        })}
 
-      <li
-        onClick={paginateNext}
-        className={`${
-          currentPage == pageNumbers[pageNumbers.length - 1] ? `hidden` : null
-        } btn btn-secondary `}
-      >
-        Next
-      </li>
+        <li
+          onClick={paginateNext}
+          className={`text-5xl cursor-pointer hover:scale-125 duration-300 ${
+            currentPage == pageNumbers[pageNumbers.length - 1] ? `hidden` : null
+          }  `}
+        >
+          »
+        </li>
+      </div>
       <p>
-        <b className="">{`page ${currentPage}`}</b>
-        <span>{` of `}</span>
+        <b className="text-primary">{`Pagina ${currentPage}`}</b>
+        <span>{` de `}</span>
         <b>{`${Math.ceil(totalPages)}`}</b>
       </p>
     </ul>
